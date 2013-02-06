@@ -40,11 +40,12 @@ public class CallWriter {
   
   public void write(List<Call> calls, String fileName) throws Exception {
     DataFileWriter<Call> dfw = new DataFileWriter<Call>(datumWriter);
-    OutputStream os = fs.create(new Path(fileName), true);
-    dfw.create(Call.SCHEMA$, os);
+    OutputStream os = fs.create(new Path(fileName));
+    dfw = dfw.create(Call.SCHEMA$, os);
     for (Call call : calls) {
       dfw.append(call);
     }
     dfw.close();
+    os.close();
   }
 }

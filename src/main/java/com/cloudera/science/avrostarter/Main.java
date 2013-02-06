@@ -80,6 +80,7 @@ public class Main extends Configured implements Tool {
     String fileName = args[1];
     CallWriter writer = new CallWriter(fs);
     writer.write(calls, fileName);
+    fs.close();
     return 0;
   }
   
